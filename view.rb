@@ -26,7 +26,7 @@ class Display
     puts meal.upcase
     puts "-"*25
     "Ingredients".rjust(8) + " "*15 + "Calories"
-    yield ###### for self.puts_updated_table check for send - expecting updated table from controller ######
+    puts @updated_table
     puts "-"*25
     puts "Calorie Count" + " "*7 + "#{total_calories}"
   end
@@ -34,7 +34,7 @@ class Display
   self.list_meal_information{}
 
   def self.puts_updated_table(updated_table)
-    puts updated_table
+    @updated_table = updated_table
     # counter = 1
     # ingredients_list.each do |ingredient, calories|
     #   puts counter.to_s.ljust(3) + "[ ] #{ingredient.ljust(15)}: #{calories}"
@@ -44,11 +44,15 @@ class Display
 
 
   def self.choose_ingredients(meal)
-    puts " Choose the ingredients for your #{meal} of "F" to finish."
-
+    puts "Choose the ingredients for your #{meal} or "F" to finish."
   end
 
+  def self.delete_ingredient(ingredient)
+    puts "You removed #{ingredient}."
+  end
 
+  def goodbye
+    puts "Happy eating!"
 end
 
 meal = "burger"
