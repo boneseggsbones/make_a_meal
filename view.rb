@@ -33,8 +33,6 @@ class Display
 
   self.list_meal_information{}
 
-
-
   def self.puts_updated_table(updated_table)
     puts updated_table
     # counter = 1
