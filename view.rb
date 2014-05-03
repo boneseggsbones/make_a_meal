@@ -1,4 +1,5 @@
 
+require_relative "images"
 
 class Display
 
@@ -23,6 +24,7 @@ class Display
   end
 
   def self.puts_updated_table(meal_array)
+    Art.send(meal)
     counter = 1
     meal_array.each do |food|
       puts counter.to_s.ljust(3) + "[ ] #{food[0].ljust(15)}: #{food[1]}"
@@ -38,6 +40,15 @@ class Display
     puts "-"*25
     # puts "Calorie Count" + " "*7 + "#{total_calories}"
 
+
+  # self.list_meal_information{}
+
+  def self.puts_updated_table(updated_table)
+    @updated_table = updated_table
+    # counter = 1
+    # ingredients_list.each do |ingredient, calories|
+    #   puts counter.to_s.ljust(3) + "[ ] #{ingredient.ljust(15)}: #{calories}"
+    #   counter += 1
     end
   end
 
@@ -50,6 +61,7 @@ class Display
     puts "Choose the ingredients for your #{meal} or F to finish."
   end
 
+
   def self.delete_ingredient(ingredient)
     puts "You removed #{ingredient}."
   end
@@ -58,9 +70,15 @@ class Display
     puts "Happy eating!"
 end
 
-meal = "burger"
+meal = "salad"
 ingredients = {"lettuce" => 10,  "bacon" => 200, "pickle"=> 10, "onion" =>30}
 total_calories = 200
+
+
+# Display.list_meal_information(meal,ingredients,total_calories)
+# Display.choose_ingredients(meal)
+Display.intro
+Display.list_meal_information(meal)
 
 
 
