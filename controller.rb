@@ -8,7 +8,7 @@ class MealMaker
   end
 
   def start
-    # Display.intro
+    Display.intro
     all_food = DatabaseAccess.get_all_food.flatten
     Display.welcome(all_food)
     option = gets.chomp
