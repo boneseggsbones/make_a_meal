@@ -1,6 +1,6 @@
 require 'paint'
 
-class Display
+class Art
   def self.welcome
     print "\n" *3
     print Paint[
@@ -104,9 +104,9 @@ ___  ___        _             ___   ___  ___              _
 end
 
 
-Display.new
-Display.welcome
-Display.burger
-Display.pizza
-Display.burrito
-Display.salad
+# Art.new
+# Art.welcome
+# Art.burger
+# Art.pizza
+# Art.burrito
+# Art.salad
