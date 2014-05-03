@@ -1,4 +1,5 @@
 
+require_relative "images"
 
 class Display
 
@@ -22,7 +23,9 @@ class Display
     end
   end
 
-  def self.list_meal_information(meal, ingredients_list, total_calories)
+  def self.list_meal_information(meal)#, ingredients_list, total_calories)
+    self.intro
+    Art.send(meal)
     puts meal.upcase
     puts "-"*25
     "Ingredients".rjust(8) + " "*15 + "Calories"
@@ -31,7 +34,7 @@ class Display
     puts "Calorie Count" + " "*7 + "#{total_calories}"
   end
 
-  self.list_meal_information{}
+  # self.list_meal_information{}
 
   def self.puts_updated_table(updated_table)
     @updated_table = updated_table
@@ -43,9 +46,9 @@ class Display
   end
 
 
-  def self.choose_ingredients(meal)
-    puts "Choose the ingredients for your #{meal} or "F" to finish."
-  end
+  # def self.choose_ingredients(meal)
+  #   puts "Choose the ingredients for your #{meal} or "F" to finish."
+  # end
 
   def self.delete_ingredient(ingredient)
     puts "You removed #{ingredient}."
@@ -55,11 +58,14 @@ class Display
     puts "Happy eating!"
 end
 
-meal = "burger"
+meal = "salad"
 ingredients = {"lettuce" => 10,  "bacon" => 200, "pickle"=> 10, "onion" =>30}
 total_calories = 200
 
-Display.list_meal_information(meal,ingredients,total_calories)
-Display.choose_ingredients(meal)
+# Display.list_meal_information(meal,ingredients,total_calories)
+# Display.choose_ingredients(meal)
+Display.intro
+Display.list_meal_information(meal)
+
 
 
