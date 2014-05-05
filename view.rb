@@ -1,6 +1,6 @@
 
 require_relative "images"
-
+@@calories = 0
 class Display
 
   def self.intro
@@ -27,37 +27,63 @@ class Display
   def self.puts_updated_table(meal, meal_array)
     Art.send(meal.downcase)
     counter = 1
+    @meal_arr = []
     meal_array.each do |food|
-      puts counter.to_s.ljust(3) + "[ ] #{food[0].ljust(15)}: #{food[1]}"
+      # puts counter.to_s.ljust(3) + "[ ] #{food[0].ljust(15)}: #{food[1]}"
+
+      @meal_arr << counter.to_s.ljust(3) + "[ ] #{food[0].ljust(15)}: #{food[1]}"
       counter +=1
     end
+    @meal_arr.each {|line| puts line}
   end
 
   def self.list_meal_information(meal, meal_array)
     puts meal.upcase
-    puts "-"*25
+    puts "-"*35
     "Ingredients".rjust(8) + " "*15 + "Calories"
     puts_updated_table(meal, meal_array)
-    puts "-"*25
+    puts "-"*35
+    # calories = []
+    # meal_array.each do |food|
+    #   food[1]
     # puts "Calorie Count" + " "*7 + "#{total_calories}"
   end
 
   # self.list_meal_information{}
 
-
-
-
-  def self.choose_ingredients(meal)
-    puts "Choose the ingredients for your #{meal} or F to finish."
+  def self.another_ingredient_selection_msg
+    print "Make another selection:  "
   end
 
 
-  def self.delete_ingredient(ingredient)
-    puts "You removed #{ingredient}."
+
+  def self.choose_ingredients
+    print "Choose the ingredients for your meal or f to finish."
   end
 
-  def goodbye
+  def self.goodbye
     puts "Happy eating!"
+  end
+
+  def self.display_toggled_items(selection)
+
+    index = selection.to_i - 1
+    @meal_arr[index].match(/(\[ \])/)[0] == "[ ]"
+    @meal_arr[index].gsub!(/(\[ \])/,'[X]')
+    @meal_arr.each {|line| puts line}
+    @@calories += @meal_arr[index].match(/( \d+)/)[0].to_i
+    puts "-"*35
+    if @@calories > 1000
+      puts "Calorie Count" + " "*10 + "#{@@calories}"
+      puts "Fatass...."
+      puts "-"*35
+    else
+      puts "Calorie Count" + " "*10 + "#{@@calories}"
+    end
+  end
+
+  def self.total_calorie_display
+    print "Total calories: "
   end
 end
 
